@@ -1,9 +1,9 @@
 require('esbuild').build({
-    entryPoints: ['src/main.ts'],
+    entryPoints: ['src/cf-alert.ts'],
     bundle: true,
     minify: true,
-    outfile: 'dist/main.js',
-    watch: true
+    outfile: 'dist/cf-alert.js',
+    format: 'esm',
 }).catch((err) => {
     console.error(err)
     process.exit(1)

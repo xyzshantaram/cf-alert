@@ -2,5 +2,23 @@
   "devDependencies": {
     "esbuild": "^0.14.5",
     "tsc": "^2.0.3"
+  },
+  "name": "cf-alert",
+  "author": {
+    "name": "Siddharth Singh",
+    "email": "me@shantaram.xyz",
+    "url": "https://shantaram.xyz"
+  },
+  "version": "0.1.0",
+  "description": "An alert dialog implementation made with campfire.js",
+  "module": "dist/cf-alert.js",
+  "main": "dist/cf-alert.js",
+  "types": "dist/cf-alert.d.ts",
+  "dependencies": {
+    "campfire.js": "^2.3.0",
+    "typescript": "^4.5.4"
+  },
+  "scripts": {
+    "build": "node esbuild.config.js && npx tsc"
   }
 }
