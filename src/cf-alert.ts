@@ -57,12 +57,40 @@ function message(text: string, title = 'Info', customLabel = 'OK') {
     })
 }
 
-function input(title: string, text: string) {
-    const [header, body, footer] = create();
+function input(type: string, text: string, title = 'Input') {
+    const [header, body, footer, mask] = create();
     return new Promise((resolve, reject) => {
         try {
             header.innerHTML = cf.escape(title);
             body.innerHTML = cf.escape(text);
+
+            const set = cf.insert(cf.nu('fieldset', {
+                attrs: { type: type }
+            }), { atEndOf: body }) as HTMLInputElement;
+
+            const field = cf.insert(cf.nu('input#alert-input', {
+                attrs: { type: type }
+            }), { atEndOf: set }) as HTMLInputElement;
+
+            cf.insert(cf.nu('button#alert-cancel', {
+                on: {
+                    click: (e) => {
+                        reject('Cancelled by user');
+                        mask.remove();
+                    }
+                },
+                c: "Cancel"
+            }), { atEndOf: footer });
+
+            cf.insert(cf.nu('button#alert-ok', {
+                on: {
+                    click: (e) => {
+                        resolve(field.value);
+                        mask.remove();
+                    }
+                },
+                c: "Submit"
+            }), { atEndOf: footer });
         }
         catch (e) {
             reject(e)
@@ -70,10 +98,37 @@ function input(title: string, text: string) {
     })
 }
 
-function confirm() {
-    const [header, body, footer] = create();
+interface CustomLabels {
+    yes?: string,
+    no?: string
+}
+
+function confirm(text: string, customLabels: CustomLabels, title = 'Are you sure?') {
+    const [header, body, footer, mask] = create();
     return new Promise((resolve, reject) => {
         try {
+            header.innerHTML = cf.escape(title);
+            body.innerHTML = cf.escape(text);
+
+            cf.insert(cf.nu('button#alert-cancel', {
+                on: {
+                    click: (e) => {
+                        resolve(false);
+                        mask.remove();
+                    }
+                },
+                c: customLabels?.no || "No"
+            }), { atEndOf: footer });
+
+            cf.insert(cf.nu('button#alert-ok', {
+                on: {
+                    click: (e) => {
+                        resolve(true);
+                        mask.remove();
+                    }
+                },
+                c: customLabels?.yes || "Yes"
+            }), { atEndOf: footer });
 
         }
         catch (e) {
@@ -82,4 +137,4 @@ function confirm() {
     })
 }
 
-export default { prompt, message, confirm };
+export default { input, message, confirm };
