@@ -34,12 +34,12 @@ const create = () => {
     return [header, body, footer, mask] as HTMLElement[];
 }
 
-function message(text: string, title = 'Info', customLabel = 'OK') {
+function message(text: string, title = 'Info', customLabel = 'OK', safeBody = true) {
     const [header, body, footer, mask] = create();
     return new Promise<void>((resolve, reject) => {
         try {
             header.innerHTML = cf.escape(title);
-            body.innerHTML = cf.escape(text);
+            body.innerHTML = safeBody ? cf.escape(text) : text;
 
             cf.insert(cf.nu('button#alert-ok', {
                 on: {
@@ -57,12 +57,12 @@ function message(text: string, title = 'Info', customLabel = 'OK') {
     })
 }
 
-function input(type: string, text: string, title = 'Input') {
+function input(type: string, text: string, title = 'Input', safeBody = true) {
     const [header, body, footer, mask] = create();
     return new Promise((resolve, reject) => {
         try {
             header.innerHTML = cf.escape(title);
-            body.innerHTML = cf.escape(text);
+            body.innerHTML = safeBody ? cf.escape(text) : text;
 
             const set = cf.insert(cf.nu('fieldset', {
                 attrs: { type: type }
@@ -103,12 +103,12 @@ interface CustomLabels {
     no?: string
 }
 
-function confirm(text: string, customLabels: CustomLabels, title = 'Are you sure?') {
+function confirm(text: string, customLabels: CustomLabels, title = 'Are you sure?', safeBody = true) {
     const [header, body, footer, mask] = create();
     return new Promise((resolve, reject) => {
         try {
             header.innerHTML = cf.escape(title);
-            body.innerHTML = cf.escape(text);
+            body.innerHTML = safeBody ? cf.escape(text) : text;
 
             cf.insert(cf.nu('button#alert-cancel', {
                 on: {

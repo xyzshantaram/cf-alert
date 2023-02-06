@@ -13,6 +13,7 @@
     <script type='module'>
         import cfa from './dist/cf-alert.js';
         await cfa.message('test', 'foobar');
+        await cfa.message('<b>unsafe</b>', 'unsafe alert', 'test', false)
 
         let confirm = await cfa.confirm('testing confirm');
         console.log(confirm);
