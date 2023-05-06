@@ -34,6 +34,14 @@ const create = () => {
     return [header, body, footer, mask] as HTMLElement[];
 }
 
+function fatal(text: string, title = 'Error', safeBody = true) {
+    const [header, body] = create();
+    return new Promise<void>(() => {
+        header.innerHTML = cf.escape(title);
+        body.innerHTML = safeBody ? cf.escape(text) : text;
+    })
+}
+
 function message(text: string, title = 'Info', customLabel = 'OK', safeBody = true) {
     const [header, body, footer, mask] = create();
     return new Promise<void>((resolve, reject) => {
@@ -137,4 +145,5 @@ function confirm(text: string, customLabels: CustomLabels, title = 'Are you sure
     })
 }
 
-export default { input, message, confirm };
+export default { input, message, confirm, fatal };
+export { input, message, confirm, fatal };

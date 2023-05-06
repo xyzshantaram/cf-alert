@@ -10,14 +10,14 @@
     "url": "https://shantaram.xyz"
   },
   "repository": "https://github.com/xyzshantaram/cf-alert",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "An alert dialog implementation made with campfire.js",
   "module": "dist/cf-alert.js",
   "main": "dist/cf-alert.js",
   "types": "dist/cf-alert.d.ts",
   "dependencies": {
     "campfire.js": "^2.3.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "build": "node esbuild.config.js && npx tsc"

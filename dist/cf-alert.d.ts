@@ -1,3 +1,4 @@
+declare function fatal(text: string, title?: string, safeBody?: boolean): Promise<void>;
 declare function message(text: string, title?: string, customLabel?: string, safeBody?: boolean): Promise<void>;
 declare function input(type: string, text: string, title?: string, safeBody?: boolean): Promise<unknown>;
 interface CustomLabels {
@@ -9,5 +10,7 @@ declare const _default: {
     input: typeof input;
     message: typeof message;
     confirm: typeof confirm;
+    fatal: typeof fatal;
 };
 export default _default;
+export { input, message, confirm, fatal };
