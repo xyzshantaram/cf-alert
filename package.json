@@ -10,7 +10,7 @@
     "url": "https://shantaram.xyz"
   },
   "repository": "https://github.com/xyzshantaram/cf-alert",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An alert dialog implementation made with campfire.js",
   "module": "dist/cf-alert.js",
   "main": "dist/cf-alert.js",

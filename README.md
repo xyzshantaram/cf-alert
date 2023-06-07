@@ -70,7 +70,7 @@ function input(
 An input dialog box.
 
 - **type** The HTML type of the input element, for example `text`, `password`,
-  or `number`.
+  or `number`. Also supports `textarea`.
 - **text** The text message to display in the input box.
 - **title** The title that will be displayed for the box. Defaults to "Input".
 - **safeBody** Defaults to `true`. A boolean representing whether the body of

@@ -6,7 +6,8 @@
     overflow: auto;
 }
 
-#alert-header, #alert-footer {
+#alert-header,
+#alert-footer {
     padding: 1rem;
 }
 
@@ -17,7 +18,20 @@
 }
 
 #alert-body {
-    padding-left: 1rem;
+    padding: 1rem;
+}
+
+#alert-body fieldset {
+    border: none;
+}
+
+#alert-body textarea {
+    height: 3rem;
+    resize: none;
+    margin-top: 0.5rem;
+    font-family: inherit;
+    display: block;
+    width: calc(100% - 0.5rem);
 }
 
 #alert-footer {
@@ -46,13 +60,16 @@
     border-radius: 0.2rem;
 }
 
-#alert-cancel, #alert-ok {
+#alert-cancel,
+#alert-ok {
     cursor: pointer;
     margin: 0.2rem;
 }
 
 @media not all and (hover: none) {
-    #alert-cancel:hover, #alert-ok:hover {
+
+    #alert-cancel:hover,
+    #alert-ok:hover {
         filter: brightness(1.2);
     }
 }

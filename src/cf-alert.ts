@@ -72,13 +72,10 @@ function input(type: string, text: string, title = 'Input', safeBody = true) {
             header.innerHTML = cf.escape(title);
             body.innerHTML = safeBody ? cf.escape(text) : text;
 
-            const set = cf.insert(cf.nu('fieldset', {
-                attrs: { type: type }
-            }), { atEndOf: body }) as HTMLInputElement;
-
-            const field = cf.insert(cf.nu('input#alert-input', {
-                attrs: { type: type }
-            }), { atEndOf: set }) as HTMLInputElement;
+            const field = cf.insert(
+                cf.nu(`${type === 'textarea' ? 'textarea' : 'input'}#alert-input`, { attrs: { type } }),
+                { atEndOf: body }
+            ) as HTMLInputElement;
 
             cf.insert(cf.nu('button#alert-cancel', {
                 on: {
